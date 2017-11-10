@@ -63,13 +63,13 @@ sudo nvidia-docker run --rm nvidia/cuda nvidia-smi
 sudo apt-get -y autoremove
 
 # Create project directory
-mkdir -p "$HOME"/slow-motion
-cd "$HOME"/slow-motion
+mkdir -p "$HOME"/neural-slow-motion
+cd "$HOME"/neural-slow-motion
 # Create DockerFile
-wget -c https://raw.githubusercontent.com/AlverGant/neural-style-transfer-docker/master/Dockerfile_GPU -O Dockerfile
+wget -c https://raw.githubusercontent.com/AlverGant/neural-slow-motion/master/Dockerfile -O Dockerfile
 
 # "compile" docker images
-sudo docker build -t slow-motion .
+sudo docker build -t neural-slow-motion .
 
 # Create directories and populate with test images
 mkdir -p "$HOME"/images_input
@@ -82,6 +82,6 @@ mkdir -p "$HOME"/images_output
 # Run docker with GPU support, removing old instances and mapping ~/images_input to /input inside container as read-only
 # map ~/images_output to /output inside container
 
-cd "$HOME"/slow-motion
-sudo nvidia-docker run --rm -v "$HOME"/images_input:/input:ro -v "$HOME"/images_output:/output -it slow-motion
+cd "$HOME"/neural-slow-motion
+sudo nvidia-docker run --rm -v "$HOME"/images_input:/input:ro -v "$HOME"/images_output:/output -it neural-slow-motion
 
