@@ -42,8 +42,8 @@ RUN git clone https://github.com/torch/distro.git /torch --recursive && \
         bash install-deps && \
         ./install.sh
 
-RUN git clone https://github.com/AlverGant/neural-slow-motion && \
-        cd neural-slow-motion && \
+RUN git clone https://bitbucket.org/arthurchau10/slow-motion && \
+        cd slow-motion && \
         /bin/bash install.bash && \
        	mkdir -p /input && \
     	mkdir -p /output
