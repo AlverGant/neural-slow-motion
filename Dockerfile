@@ -54,4 +54,4 @@ WORKDIR "/slow-motion"
 
 ENTRYPOINT ["python", "./main.py"]
 
-CMD ["-i", "/input/", "-o", "/output/", "-g", "gpu", "-m", "/tmp/results", "-f", "/tmp/frames", "-n", "1", "-x", "2"]
+CMD ["-i", "/input/", "-o", "/output/", "-m", "/tmp/results", "-f", "/tmp/frames", "-n", "1", "-x", "2"]

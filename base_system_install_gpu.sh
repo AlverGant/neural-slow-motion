@@ -66,7 +66,7 @@ sudo apt-get -y autoremove
 mkdir -p "$HOME"/neural-slow-motion
 cd "$HOME"/neural-slow-motion
 # Create DockerFile
-wget -c https://raw.githubusercontent.com/AlverGant/neural-slow-motion/master/Dockerfile -O Dockerfile
+wget https://raw.githubusercontent.com/AlverGant/neural-slow-motion/master/Dockerfile -O Dockerfile
 
 # "compile" docker images
 sudo docker build -t neural-slow-motion .
