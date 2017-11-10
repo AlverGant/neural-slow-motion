@@ -72,12 +72,12 @@ wget -c https://raw.githubusercontent.com/AlverGant/neural-slow-motion/master/Do
 sudo docker build -t neural-slow-motion .
 
 # Create directories and populate with test images
-mkdir -p "$HOME"/images_input
+mkdir "$HOME"/images_input
 cd "$HOME"/images_input
 # Grab some test images, keep the largest ones
 wget -nd -H -p -A jpg -e robots=off epicantus.tumblr.com/page/{1..1}
 rm *500.jpg
-mkdir -p "$HOME"/images_output
+mkdir "$HOME"/images_output
 
 # Run docker with GPU support, removing old instances and mapping ~/images_input to /input inside container as read-only
 # map ~/images_output to /output inside container

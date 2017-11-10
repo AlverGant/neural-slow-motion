@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
 
 MAINTAINER Alvaro Antelo <alvaro.antelo@gmail.com>
 
@@ -30,6 +30,7 @@ RUN pip --no-cache-dir install \
         numpy \
         scikit-image \
         scipy \
+        cffi \
         http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl \
         torchvision
 
@@ -44,12 +45,13 @@ RUN git clone https://github.com/torch/distro.git /torch --recursive && \
 
 RUN git clone https://bitbucket.org/arthurchau10/slow-motion && \
         cd slow-motion && \
-        /bin/bash install.bash && \
+        chmod +x install.bash && \
+        /bin/bash /slow-motion/install.bash && \
        	mkdir -p /input && \
     	mkdir -p /output
 
-WORKDIR "/notebooks/slow-motion"
+WORKDIR "/slow-motion"
 
 ENTRYPOINT ["python", "./main.py"]
 
-CMD ["--in-path", "/input/", "--out-path", "/output/"]
+CMD ["-i", "/input/", "-o", "/output/", "-g", "gpu", "-m", "/tmp/results", "-f", "/tmp/frames", "-n", "1", "-x", "2"]
