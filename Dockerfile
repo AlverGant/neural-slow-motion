@@ -45,8 +45,9 @@ RUN git clone https://github.com/torch/distro.git /torch --recursive && \
 
 RUN git clone https://bitbucket.org/arthurchau10/slow-motion && \
         cd slow-motion && \
+	    git pull && \
         chmod +x install.bash && \
-        /bin/bash /slow-motion/install.bash && \
+        bash install.bash && \
        	mkdir -p /input && \
     	mkdir -p /output
 
@@ -54,4 +55,4 @@ WORKDIR "/slow-motion"
 
 ENTRYPOINT ["python", "./main.py"]
 
-CMD ["-i", "/input/", "-o", "/output/", "-m", "/tmp/results", "-f", "/tmp/frames", "-n", "1", "-x", "2"]
+CMD ["-h"]

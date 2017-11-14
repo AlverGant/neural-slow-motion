@@ -71,17 +71,16 @@ wget https://raw.githubusercontent.com/AlverGant/neural-slow-motion/master/Docke
 # "compile" docker images
 sudo docker build -t neural-slow-motion .
 
-# Create directories and populate with test images
+# Create directories and populate with test files
 mkdir "$HOME"/images_input
 cd "$HOME"/images_input
 # Grab some test images, keep the largest ones
-wget -nd -H -p -A jpg -e robots=off epicantus.tumblr.com/page/{1..1}
-rm *500.jpg
+wget -c http://techslides.com/demos/sample-videos/small.mp4
 mkdir "$HOME"/images_output
 
 # Run docker with GPU support, removing old instances and mapping ~/images_input to /input inside container as read-only
 # map ~/images_output to /output inside container
 
 cd "$HOME"/neural-slow-motion
-sudo nvidia-docker run --rm -v "$HOME"/images_input:/input:ro -v "$HOME"/images_output:/output -it neural-slow-motion
+sudo nvidia-docker run --rm -v "$HOME"/images_input:/input:ro -v "$HOME"/images_output:/output -it neural-slow-motion -i /input/small.mp4 -o /output/slow.mp4 -m /tmp/results -f /tmp/frames -n 1 -x 2
 
